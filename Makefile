@@ -21,7 +21,7 @@ all: $(MAX)
 # in/input%.txt: Creates this text file from the contents of the
 #   clipboard, and then opens it.
 in/input%.txt:
-	@pbpaste > $@ && open $@
+	@pbpaste > $@ && git add $@ && open $@
 
 # run_%normal: Builds this numbered executable file from its
 #   corresponding normal c++ file.
@@ -33,12 +33,18 @@ run_%normal: normal/%-*.cpp
 #   The c++ file is then opened, and a corresponding input file
 #   is created if necessary.
 new: in/input$(NEXT).txt
-	@open `cp -nv template.cpp normal/$(NEXT)-$(id).cpp | cut -d ' ' -f 3`
+	@ncf=normal/$(NEXT)-$(id).cpp  ;\
+	cp -n template.cpp $$ncf       ;\
+	git add $$ncf                  ;\
+	open $$ncf
 
 # mini: Copies the most recent normal c++ file into the mini
 #   folder. The file is renamed and opened.
 mini: normal/$(MAX)-*.cpp
-	@open `cp -nv $< mini/$(MAX)mini.cpp | cut -d ' ' -f 3`
+	@mcf=mini/$(MAX)mini.cpp       ;\
+	cp -n $< $$mcf                 ;\
+	git add $$mcf                  ;\
+	open $$mcf
 
 # clean: Removes executable files that were created by this
 #   makefile and mini/Makefile.

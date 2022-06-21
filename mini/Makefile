@@ -13,7 +13,7 @@ all: $(shell ls | sort -n | tail -1 | cut -d '.' -f 1)
 # ../in/input%.txt: Creates this text file from the contents of
 #   the clipboard, and then opens it.
 ../in/input%.txt:
-	@pbpaste > $@ && open $@
+	@pbpaste > $@ && git add $@ && open $@
 
 # ../run_%mini: Builds this numbered executable file from its
 #   corresponding mini c++ file.
