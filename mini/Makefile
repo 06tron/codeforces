@@ -1,6 +1,6 @@
 # .SECONDARY: Prevents the automatic deletion of executable
 #   files created by this makefile.
-.SECONDARY: $(wildcard ../run_*mini)
+.SECONDARY:
 
 # all: Runs the most recent mini executable file.
 all: $(shell ls | sort -n | tail -1 | cut -d '.' -f 1)

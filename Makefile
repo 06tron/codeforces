@@ -1,6 +1,6 @@
 # .SECONDARY: Prevents the automatic deletion of executable
 #   files created by this makefile.
-.SECONDARY: $(wildcard run_*normal)
+.SECONDARY:
 
 # MAX: The number of files in the normal directory. These files
 #   are numbered from one to MAX, and the file with the highest
@@ -33,20 +33,20 @@ run_%normal: normal/%-*.cpp
 #   The c++ file is then opened, and a corresponding input file
 #   is created if necessary.
 new: in/input$(NEXT).txt
-	@ncf=normal/$(NEXT)-$(id).cpp  ;\
-	cp -n template.cpp $$ncf       ;\
-	git add $$ncf                  ;\
-	open $$ncf
+	@new=normal/$(NEXT)-$(id).cpp  ;\
+	cp -n template.cpp $$new       ;\
+	git add $$new                  ;\
+	open $$new
 
 # mini: Copies the most recent normal c++ file into the mini
 #   folder. The file is renamed and opened.
 mini: normal/$(MAX)-*.cpp
-	@mcf=mini/$(MAX)mini.cpp       ;\
-	cp -n $< $$mcf                 ;\
-	git add $$mcf                  ;\
-	open $$mcf
+	@mini=mini/$(MAX)mini.cpp      ;\
+	cp -n $< $$mini                ;\
+	git add $$mini                 ;\
+	open $$mini
 
 # clean: Removes executable files that were created by this
 #   makefile and mini/Makefile.
 clean:
-	rm run_*
+	@rm -v run_*
