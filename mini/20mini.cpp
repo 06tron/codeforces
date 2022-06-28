@@ -3,7 +3,7 @@
 
 int main() {
 	int t,n,a,b,m,j,i;
-	for (I t; t--; std::cout<<(b?"Joe\n":"Mike\n")) {
+	for (I t; t--; std::puts(b?"Joe":"Mike")) {
 		I n;
 		j=m=1<<30;
 		for(i=n; i--; b=i&1?a<m?m=a,0:b:a<j?j=a:b) I a;
