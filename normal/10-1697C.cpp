@@ -41,34 +41,31 @@ int main() {
 		}
 	}
 }
-// aaabbbccc
-// abaacbbcc
 
-int b = 0, v = 1, c = 1;
-for (int i = 0; i < len; ++i) {
-	switch (s[i]) {
-	case 'a':
-		if (c) {
+// int b = 0, v = 1, c = 1;
+// for (int i = 0; i < len; ++i) {
+// 	switch (s[i]) {
+// 	case 'a':
+// 		if (c) {
 
-		} else {
-			b += t[i] == 'b';
-			v = t[i] != 'c';
-		} break;
-	case 'c':
-		if (c) {
+// 		} else {
+// 			b += t[i] == 'b';
+// 			v = t[i] != 'c';
+// 		} break;
+// 	case 'c':
+// 		if (c) {
 			
-		} else {
+// 		} else {
 
-		} break;
-	default:
-		if (c) {
+// 		} break;
+// 	default:
+// 		if (c) {
 
-		} else {
+// 		} else {
 
-		}
-	}
-}
-
+// 		}
+// 	}
+// } TODO: complete this puzzle
 // aaaa<-(b)aaaaa
 // bbbbb(a)->bbbb
 // bbbb<-(c)bbbbb
