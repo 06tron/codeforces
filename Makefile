@@ -46,6 +46,15 @@ mini: normal/$(MAX)-*.cpp
 	git add $$mini                 ;\
 	open $$mini
 
+# fav: Renames the most recent normal c++ file to include the
+#   problem's given difficulty, e.g. "make fav tag=800". A link
+#   to the problem is added to a list of favorites in the
+#   README.md file.
+fav: normal/$(MAX)-*.cpp
+	@id=$$(echo $< | cut -d '-' -f 2 | cut -d '.' -f 1)  ;\
+	git mv $< normal/$(MAX)-$$id-$(tag).cpp              ;\
+	echo "$(tag): <https://codeforces.com/problemset/problem/$${id%?}/$${id:$${#id}-1:1}>" >> README.md
+
 # clean: Removes executable files that were created by this
 #   makefile and mini/Makefile.
 clean:
