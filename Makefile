@@ -53,7 +53,7 @@ mini: normal/$(MAX)-*.cpp
 fav: normal/$(MAX)-*.cpp
 	@id=$$(echo $< | cut -d '-' -f 2 | cut -d '.' -f 1)  ;\
 	git mv $< normal/$(MAX)-$$id-$(tag).cpp              ;\
-	echo "$(tag): <https://codeforces.com/problemset/problem/$${id%?}/$${id:$${#id}-1:1}>\n" >> README.md
+	echo "$(tag): <https://codeforces.com/problemset/problem/$${id%?}/$${id:$${#id}-1:1}>  " >> README.md
 
 # clean: Removes executable files that were created by this
 #   makefile and mini/Makefile.
