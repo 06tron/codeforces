@@ -31,12 +31,19 @@ run_%normal: normal/%-*.cpp
 # new: Copies the template c++ file into the normal folder
 #   renamed with NEXT and a given id, e.g. "make new id=4A".
 #   The c++ file is then opened, and a corresponding input file
-#   is created if necessary.
+#   is created if necessary. Also starts the times.csv entry.
 new: in/input$(NEXT).txt
 	@new=normal/$(NEXT)-$(id).cpp  ;\
 	cp -n template.cpp $$new       ;\
 	git add $$new                  ;\
-	open $$new
+	open $$new                     ;\
+	date -u +"$(id),%Y-%m-%d %H:%M:%S,%s" | tr -d '\n' >> times.csv
+
+# end: Completes the times.csv entry, which consists of the most
+#   recent problem id, start and end times, and the number of
+#   characters in the finished program.
+end: normal/$(MAX)-*.cpp
+	@date -u +",%Y-%m-%d %H:%M:%S,%s,$$(wc -m $< | cut -d ' ' -f 6)" >> times.csv
 
 # mini: Copies the most recent normal c++ file into the mini
 #   folder. The file is renamed and opened.
