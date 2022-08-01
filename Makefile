@@ -62,6 +62,12 @@ fav: normal/$(MAX)-*.cpp
 	git mv $< normal/$(MAX)-$$id-$(tag).cpp              ;\
 	echo "$(tag): <https://codeforces.com/problemset/problem/$${id%?}/$${id:$${#id}-1:1}>  " >> README.md
 
+# commit: Use only if the most recent normal c++ file hasn't
+#   been committed already. Add to the message with a variable,
+#   e.g. "make commit and="and its mini"" 
+commit: normal/$(MAX)-*.cpp
+	@git commit -am "Adds $$(echo $< | cut -d '/' -f 2 | cut -d '.' -f 1) $(and)"
+
 # clean: Removes executable files that were created by this
 #   makefile and mini/Makefile.
 clean:
