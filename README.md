@@ -4,7 +4,8 @@ messing with Makefiles and saving solutions to problems from Codeforces.com
 
 ### progress
 
-![solving times](stats.png)
+![solving times](minutes.png)
+![cpm chart](cpm.png)
 
 ### my favorites
 
