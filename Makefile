@@ -43,7 +43,7 @@ new: in/input$(NEXT).txt
 #   recent problem id, start and end times, and the number of
 #   characters in the finished program.
 end: normal/$(MAX)-*.cpp
-	@conda run -n base python stats.py $< $$(wc -m $< | cut -d ' ' -f 6)
+	@conda run -n base python stats.py $< $$(date +%s) $$(wc -m $< | cut -d ' ' -f 6)
 
 # mini: Copies the most recent normal c++ file into the mini
 #   folder. The file is renamed and opened.

@@ -10,19 +10,19 @@ import matplotlib.pyplot as plt
 #   sorted by time. The elements are codeforces Submission
 #   objects: https://codeforces.com/apiHelp/objects#Submission
 if len(sys.argv) > 1:
-	arg = sys.argv[1]
-	id = int(arg[arg.find('-')+1:-5])
-	letter = arg[-5:-4]
-	insert = time.strftime(",%Y-%m-%d %H:%M:%S,%s,", time.gmtime())
-	insert += sys.argv[2] + ','
-	link = "https://codeforces.com/api/user.status?handle=06tron"
-	subs = requests.get(link).json()["result"]
-	with open("times.csv", 'a') as times:
-		for s in subs:
-			if id == s["contestId"] and letter == s["problem"]["index"]:
-				insert += str(s["problem"]["rating"]) + '\n'
-				times.write(insert)
-				break
+    arg = sys.argv[1]
+    id = int(arg[arg.find('-')+1:-5])
+    letter = arg[-5:-4]
+    insert = time.strftime(",%Y-%m-%d %H:%M:%S,", time.gmtime())
+    insert += sys.argv[2] + ',' + sys.argv[3] + ','
+    url = "https://codeforces.com/api/user.status?handle=06tron&from=1&count=10"
+    subs = requests.get(url).json()["result"]
+    with open("times.csv", 'a') as times:
+        for s in subs:
+            if id == s["contestId"] and letter == s["problem"]["index"]:
+                insert += str(s["problem"]["rating"]) + '\n'
+                times.write(insert)
+                break
 
 # The number of characters in template.cpp
 template_chars = 152
@@ -69,7 +69,7 @@ colors = {
     "axes.edgecolor": "white",
     "xtick.color": "white",
     "ytick.color": "white",
-	"grid.color": "red"
+    "grid.color": "red"
 }
 
 # Generate two bar charts, one for minutes to solve a problem,
