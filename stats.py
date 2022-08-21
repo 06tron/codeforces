@@ -1,6 +1,5 @@
 import sys
 import csv
-import time
 import requests
 import matplotlib.pyplot as plt
 
@@ -9,20 +8,21 @@ import matplotlib.pyplot as plt
 # subs is an array of all my submissions, which I think are
 #   sorted by time. The elements are codeforces Submission
 #   objects: https://codeforces.com/apiHelp/objects#Submission
+# Agruments are solution file name, the current time in seconds,
+#   and the number of characters in the solution file.
 if len(sys.argv) > 1:
-    arg = sys.argv[1]
-    id = int(arg[arg.find('-')+1:-5])
-    letter = arg[-5:-4]
-    insert = time.strftime(",%Y-%m-%d %H:%M:%S,", time.gmtime())
-    insert += sys.argv[2] + ',' + sys.argv[3] + ','
-    url = "https://codeforces.com/api/user.status?handle=06tron&from=1&count=10"
-    subs = requests.get(url).json()["result"]
-    with open("times.csv", 'a') as times:
-        for s in subs:
-            if id == s["contestId"] and letter == s["problem"]["index"]:
-                insert += str(s["problem"]["rating"]) + '\n'
-                times.write(insert)
-                break
+	arg = sys.argv[1]
+	id = int(arg[arg.find('-')+1:-5])
+	letter = arg[-5:-4]
+	url = "https://codeforces.com/api/user.status?handle=06tron&from=1&count=10"
+	subs = requests.get(url).json()["result"]
+	insert = ',' + sys.argv[2] + ',' + sys.argv[3] + ','
+	with open("times.csv", 'a') as times:
+		for s in subs:
+			if id == s["contestId"] and letter == s["problem"]["index"]:
+				insert += str(s["problem"]["rating"]) + '\n'
+				times.write(insert)
+				break
 
 # The number of characters in template.cpp
 template_chars = 152
@@ -39,7 +39,7 @@ minutes = []
 ratings = []
 
 # Read times.csv and subs simultaneously, extracting each
-#   problem's rating and updating the four arrays
+#   problem's rating and updating the four arrays.
 with open("times.csv") as times:
     reader = csv.DictReader(times)
     for row in reader:

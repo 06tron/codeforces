@@ -37,11 +37,12 @@ new: in/input$(NEXT).txt
 	cp -n template.cpp $$new       ;\
 	git add $$new                  ;\
 	open $$new                     ;\
-	date -u +"$(id),%Y-%m-%d %H:%M:%S,%s" | tr -d '\n' >> times.csv
+	date -u +"$(id),%s" | tr -d '\n' >> times.csv
 
-# end: Completes the times.csv entry, which consists of the most
-#   recent problem id, start and end times, and the number of
-#   characters in the finished program.
+# end: Runs stats.py to complete the times.csv entry, which
+#   consists of the most recent problem id, its rating, start
+#   and end times, and the number of characters in the finished
+#   program. Also regenerates progress graphs.
 end: normal/$(MAX)-*.cpp
 	@conda run -n base python stats.py $< $$(date +%s) $$(wc -m $< | cut -d ' ' -f 6)
 
