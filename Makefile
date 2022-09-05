@@ -65,7 +65,7 @@ fav: normal/$(MAX)-*.cpp
 
 # commit: Use only if the most recent normal c++ file hasn't
 #   been committed already. Add to the message with a variable,
-#   e.g. "make commit and="and its mini"" 
+#   e.g. "make commit and="and its mini"".
 commit: normal/$(MAX)-*.cpp
 	@git commit -am "Adds $$(echo $< | cut -d '/' -f 2 | cut -d '.' -f 1) $(and)"
 

@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 # subs is an array of all my submissions, which I think are
 #   sorted by time. The elements are codeforces Submission
 #   objects: https://codeforces.com/apiHelp/objects#Submission
-# Agruments are solution file name, the current time in seconds,
+# Arguments are solution file name, the current time in seconds,
 #   and the number of characters in the solution file.
 if len(sys.argv) > 1:
 	arg = sys.argv[1]
@@ -62,7 +62,7 @@ def make_bar(x, y):
     ax.yaxis.grid()
 
 # Make most things white so the plots are easily readable on a
-#   dark background. Red gridlines make it easier to see the
+#   dark background. Red grid lines make it easier to see the
 #   differences in bar colors.
 colors = {
     "axes.labelcolor": "white",
