@@ -44,7 +44,7 @@ new: in/input$(NEXT).txt
 #   and end times, and the number of characters in the finished
 #   program. Also regenerates progress graphs.
 end: normal/$(MAX)-*.cpp
-	@conda run -n base python stats.py $< $$(date +%s) $$(wc -m $< | cut -d ' ' -f 6)
+	@conda run -n codeforces python stats.py $< $$(date +%s) $$(wc -m $< | cut -d ' ' -f 6)
 
 # mini: Copies the most recent normal c++ file into the mini
 #   folder. The file is renamed and opened.

@@ -11,18 +11,18 @@ import matplotlib.pyplot as plt
 # Arguments are solution file name, the current time in seconds,
 #   and the number of characters in the solution file.
 if len(sys.argv) > 1:
-	arg = sys.argv[1]
-	id = int(arg[arg.find('-')+1:-5])
-	letter = arg[-5:-4]
-	url = "https://codeforces.com/api/user.status?handle=06tron&from=1&count=10"
-	subs = requests.get(url).json()["result"]
-	insert = ',' + sys.argv[2] + ',' + sys.argv[3] + ','
-	with open("times.csv", 'a') as times:
-		for s in subs:
-			if id == s["contestId"] and letter == s["problem"]["index"]:
-				insert += str(s["problem"]["rating"]) + '\n'
-				times.write(insert)
-				break
+    arg = sys.argv[1]
+    id = int(arg[arg.find('-')+1:-5])
+    letter = arg[-5:-4]
+    url = "https://codeforces.com/api/user.status?handle=06tron&from=1&count=10"
+    subs = requests.get(url).json()["result"]
+    insert = F',{sys.argv[2]},{sys.argv[3]},'
+    with open("times.csv", 'a') as times:
+        for s in subs:
+            if id == s["contestId"] and letter == s["problem"]["index"]:
+                insert += F'{s["problem"]["rating"]!s}\n'
+                times.write(insert)
+                break
 
 # The number of characters in template.cpp
 template_chars = 152
@@ -60,6 +60,8 @@ def make_bar(x, y):
         red = ((3500 - ratings[i]) / 2700)**2
         bars[i].set_color((red, 0, 0))
     ax.yaxis.grid()
+    plt.xticks(rotation="vertical")
+    plt.tight_layout()
 
 # Make most things white so the plots are easily readable on a
 #   dark background. Red grid lines make it easier to see the
@@ -73,12 +75,13 @@ colors = {
 }
 
 # Generate two bar charts, one for minutes to solve a problem,
-#   and the other for typing speed while solving.
+#   and the other for typing speed while solving. To commit use
+#   "git update-index --no-skip-worktree cpm.png minutes.png".
 with plt.rc_context(colors):
+    plt.ylabel("minutes")
     make_bar(ids, minutes)
-    plt.ylabel("Minutes")
     plt.savefig("minutes.png", transparent=True)
     plt.clf()
+    plt.ylabel("characters per minute")
     make_bar(ids, cpm)
-    plt.ylabel("Characters Per Minute")
     plt.savefig("cpm.png", transparent=True)
