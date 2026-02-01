@@ -1,8 +1,8 @@
-let t = ar.nextNat();
+let t = ar.nextInt();
 while (t--) {
-	const n = ar.nextNat();
-	let x = ar.nextNat();
-	const a = ar.nextNat(new Uint32Array(n));
+	const n = ar.nextInt();
+	let x = ar.nextInt();
+	const a = ar.nextInt(new Uint32Array(n));
 	a.sort();
 	let h = a[0];
 	let width = 1;

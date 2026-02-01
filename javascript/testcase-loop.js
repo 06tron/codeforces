@@ -1,4 +1,4 @@
-let t = ar.nextNat();
+let t = ar.nextInt();
 while (t--) {
 	
 	console.log();
