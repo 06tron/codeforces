@@ -2,7 +2,7 @@ const ar = (function asciiReader() { // 06tron
 	const input = require('fs').readFileSync(0);
 	let offset = 0;
 	return {
-		nextInt: function (arr) {
+		nextInt: (arr) => {
 			const single = (arr?.length === undefined);
 			if (single) {
 				arr = new Array(1);
@@ -28,28 +28,29 @@ const ar = (function asciiReader() { // 06tron
 			}
 			return single ? arr[0] : arr;
 		},
-		nextStr: function (len) {
+		nextStr: (len) => {
+			let start = offset;
 			if (len >= 0 && Number.isInteger(len)) {
 				offset += len;
-				return input.toString('latin1', offset - len, offset);
+			} else {
+				let byte;
+				do {
+					byte = input[offset++];
+				} while (byte == 0x20 || (byte >= 0x09 && byte <= 0x0D));
+				if (byte === undefined) {
+					return '';
+				}
+				// byte is a non-whitespace character
+				start = offset - 1;
+				do {
+					byte = input[offset++];
+				} while (byte != 0x20 && (byte < 0x09 || byte > 0x0D));
+				// byte is no longer a non-whitespace character
+				--offset;
 			}
-			let byte;
-			do {
-				byte = input[offset++];
-			} while (byte == 0x20 || (byte >= 0x09 && byte <= 0x0D));
-			if (byte === undefined) {
-				return '';
-			}
-			// byte is a non-whitespace character
-			const start = offset - 1;
-			do {
-				byte = input[offset++];
-			} while (byte != 0x20 && (byte < 0x09 || byte > 0x0D));
-			// byte is no longer a non-whitespace character
-			--offset;
 			return input.toString('latin1', start, offset);
 		},
-		skip: function (len) {
+		skip: (len) => {
 			offset += len;
 		}
 	};
