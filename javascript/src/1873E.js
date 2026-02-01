@@ -1,5 +1,6 @@
 let t = ar.nextInt();
-while (t--) {
+let out = new Uint32Array(t);
+for (let i = 0; i < t; ++i) {
 	const n = ar.nextInt();
 	let x = ar.nextInt();
 	const a = ar.nextInt(new Uint32Array(n));
@@ -18,5 +19,6 @@ while (t--) {
 		h = a[width];
 		++width;
 	}
-	console.log(Math.floor(h + x / width));
+	out[i] = Math.floor(h + x / width);
 }
+process.stdout.write(out.join('\n'));
