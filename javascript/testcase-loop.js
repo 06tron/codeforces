@@ -1,5 +1,7 @@
-let t = ar.nextInt();
-while (t--) {
+const t = rw.nextInt();
+const output = new Array(t);
+for (let i = 0; i < t; ++i) {
 	
-	console.log();
+	output[i] = undefined;
 }
+process.stdout.write(output.join('\n'));
