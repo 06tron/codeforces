@@ -17,7 +17,7 @@ all: src/$(LATEST)
 # Runs the target .js file with Node.js
 src/%.js: ../in/js-input-%.txt force
 	sub=submit.js ;\
-	cat asciiReader.min.js $@ > $$sub ;\
+	cat asciiIntReader.min.js $@ > $$sub ;\
 	node $$sub < $<
 
 # Creates input file using copied text

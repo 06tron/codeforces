@@ -1,7 +1,7 @@
-const t = rw.nextInt();
-const output = new Array(t);
-for (let i = 0; i < t; ++i) {
+let t = ar.nextInt();
+const out = Array(t);
+while (t--) {
 	
-	output[i] = undefined;
+	out.push(undefined);
 }
-process.stdout.write(output.join('\n'));
+process.stdout.write(out.join('\n'));
