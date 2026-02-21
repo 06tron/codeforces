@@ -1,5 +1,5 @@
 let t = ar.nextInt();
-const out = Array(t);
+const out = [];
 while (t--) {
 	
 	out.push(undefined);
