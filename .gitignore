@@ -1,3 +1,5 @@
-run_*
-.DS_store
 javascript/submit.js
+run_*
+
+.DS_store
+.vscode
