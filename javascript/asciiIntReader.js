@@ -21,7 +21,7 @@ const ar = (function asciiIntReader() {
 				do {
 					natural = (10 * natural) + byte - 0x30;
 					byte = input[offset++];
-				} while (byte >= 0x30 && byte <= 0x39);
+				} while (byte > 0x2F && byte < 0x3A);
 				// byte is no longer a digit
 				--offset;
 				arr[i] = negate ? -natural : natural;
