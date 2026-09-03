@@ -1,0 +1,47 @@
+C. Rank Subsequence
+
+You are given 𝑛 elements arranged in a line, numbered 1,2,…,𝑛 from left to right.
+
+You may delete any number of elements (possibly none). The remaining elements form a subsequence and keep their relative order. Let the length of this subsequence be 𝑚. If the element with original index 𝑖 becomes the 𝑗-th element of the subsequence (1≤𝑗≤𝑚), define
+- its left rank as 𝑗, and
+- its right rank as 𝑚−𝑗+1. 
+
+For each element, you are given two integer segments [𝑙𝑖,𝑟𝑖] and [𝑢𝑖,𝑣𝑖]. The 𝑖-th element is valid in a subsequence of length 𝑚 if and only if, when it occupies position 𝑗 in that subsequence, both of the following hold:
+- Its left rank is not in the range [𝑙𝑖,𝑟𝑖] (i.e., 𝑗∉[𝑙𝑖,𝑟𝑖]);
+- Its right rank is not in the range [𝑢𝑖,𝑣𝑖] (i.e., 𝑚−𝑗+1∉[𝑢𝑖,𝑣𝑖]). 
+
+A subsequence is valid if every element remaining in it is valid.
+
+Find the maximum possible length of a valid subsequence. The answer may be 0.
+
+Input:
+
+Each test contains multiple test cases. The first line contains the number of test cases 𝑡 (1≤𝑡≤5000). The description of the test cases follows.
+
+The first line of each test case contains a single integer 𝑛 (1≤𝑛≤5000) — the number of elements.
+
+Then 𝑛 lines follow, the 𝑖-th line containing the four integers 𝑙𝑖, 𝑟𝑖, 𝑢𝑖, and 𝑣𝑖 (1≤𝑖≤𝑛, 1≤𝑙𝑖≤𝑟𝑖≤𝑛, 1≤𝑢𝑖≤𝑣𝑖≤𝑛).
+
+It is guaranteed that the sum of 𝑛 over all test cases does not exceed 5000.
+
+Output:
+
+For each test case, print one integer — the maximum possible length of a valid subsequence.
+
+0
+4
+3
+2
+3
+
+Note:
+
+In the first test case, the only element cannot form a valid subsequence of length 1, so the answer is 0.
+
+In the second test case, all 4 elements can be kept. Their pairs of left and right ranks are (1,4), (2,3), (3,2), and (4,1), respectively, and all of them are valid.
+
+In the third test case, one optimal choice is to keep the elements with original indices 2, 3, and 5.
+
+In the fourth test case, keeping both elements yields a valid subsequence of length 2. Note that no valid subsequence of length 1 exists.
+
+In the fifth test case, one optimal choice is to keep the elements with original indices 3, 4, and 5.
