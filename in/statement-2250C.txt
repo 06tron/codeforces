@@ -1,3 +1,5 @@
+[https://codeforces.com/contest/2250/problem/C]
+
 C. Rank Subsequence
 
 You are given 𝑛 elements arranged in a line, numbered 1,2,…,𝑛 from left to right.
