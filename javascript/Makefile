@@ -22,16 +22,22 @@ src/%.js: ../in/js-input-%.txt force
 
 # Creates input file using copied text
 ../in/js-input-%.txt:
-	pbpaste > $@ && git add $@ && open $@
+	pbpaste > $@
+	git add $@
+	open $@
+
+start-%.json:
+	jq 'now | round' --null-input > $@
 
 # Creates new .js file with template.js
-%.js: ../in/js-input-%.txt
+%.js: ../in/js-input-%.txt start-%.json
 	new=src/$@ ;\
 	cp -i testcase-loop.js $$new ;\
-	date +"// Began: %s" >> $$new ;\
 	git add $$new ;\
 	open $$new
 
-# Appends timestamp to most recent .js file
-end:
-	date +"// Ended: %s" >> src/$(LATEST)
+times-%.json:
+	jq --from-file update-times.jq latest-times.json --arg id $* --slurpfile start start-$*.json --argjson bytes $(shell wc -c < src/$*.js) --raw-output > $@
+
+end: times-$(LATEST)on
+	cp $< latest-times.json && rm start-$(LATEST)on $<

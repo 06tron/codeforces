@@ -1,4 +1,6 @@
 javascript/submit.js
+javascript/start-%.json
+javascript/times-%.json
 run_*
 
 .DS_store
